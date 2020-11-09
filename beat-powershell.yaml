@@ -1,1 +1,12 @@
-
+~~~
+- name: Install filebeat
+  hosts: VEEAM-onsite.DOEKOE.LOCAL
+  tasks:
+    - name: filebeat
+      win_shell: | 
+        $url = 'https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.3-windows-x86_64.zip' 
+        New-Item -ItemType Directory -Path C:\Zips
+        $Dest = 'C:\Zips\'
+        $web = New-Object -TypeName System.Net.WebClient
+        $web.DownloadFile($url,$Dest)
+    
