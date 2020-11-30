@@ -6,10 +6,10 @@
 
   tasks:
   - name: Add multiverse repository                                                                                                         
-      become: true
-      shell: apt-add-repository multiverse -y
-      args:
-      executable: /bin/bash
+    become: true
+    shell: apt-add-repository multiverse -y
+    args:
+    executable: /bin/bash
     
     
   - name: Update apt-get repo and cache
