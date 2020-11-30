@@ -8,7 +8,7 @@
 # Run with:
 # sudo ansible-playbook domain_playbook.yaml --user REMOTEUSERNAME --ask-pass --ask-become-pass
 
-- hosts: ubuntu-servers
+- hosts: test-ansible
 #  become: yes
 #  become_user: root
 #  become_method: sudo
@@ -16,10 +16,10 @@
   tasks:
       
       # Adjust your timezone
-    - name: Set timezone to US/Central
+    - name: Set timezone to Europe/Berlin
       become: true
       timezone:
-        name: US/Central
+        name: Europe/Berlin
 
     - name: Add multiverse repository                                                                                                         
       become: true
@@ -64,10 +64,10 @@
       become: true
       expect:
         # Use your Active Directory user and domain here
-        command: net ads join -U USER@domain.local
+        command: net ads join -U Administrator@doekoe.local
         responses:
           # Use your Active Directory user password here
-          (?i)password: "PASSWORD_HERE"
+          (?i)password: "Doekoe2020!"
       # Don't show passwords in your log
       no_log: false
 
