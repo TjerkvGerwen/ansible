@@ -14,13 +14,6 @@
 #  become_method: sudo
 
   tasks:
-      
-      # Adjust your timezone
-    - name: Set timezone to Europe/Berlin
-      become: true
-      timezone:
-        name: Europe/Berlin
-
     - name: Add multiverse repository                                                                                                         
       become: true
       shell: apt-add-repository multiverse -y
