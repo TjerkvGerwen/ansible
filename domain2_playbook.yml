@@ -5,8 +5,7 @@
 #  become_method: sudo
 
   tasks:
-  - name: Add multiverse repository                                                                                                         
-    become: true
+  - name: Add multiverse repository
     shell: apt-add-repository multiverse -y
     args:
     executable: /bin/bash
