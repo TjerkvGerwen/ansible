@@ -10,7 +10,5 @@
       
   - name: Add repository
     shell:
-      cmd: tee -a /etc/apt/sources.list <<EOF 
-      cmd: deb http://us.archive.ubuntu.com/ubuntu/ bionic universe 
-      cmd: deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe 
-      cmd: EOF
+      cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic universe'
+      cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe'
