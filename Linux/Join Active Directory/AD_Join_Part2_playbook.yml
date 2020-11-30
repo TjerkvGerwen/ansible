@@ -1,5 +1,5 @@
 ---
-- name: Deel 2
+- name: AD_Join_Part2_playbook
   hosts: test-ansible
   become: yes
 

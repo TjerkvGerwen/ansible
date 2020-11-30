@@ -1,5 +1,6 @@
 ---
-- hosts: test-ansible
+- name: AD_Join_Part1_playbook
+  hosts: test-ansible
   become: yes
   
   tasks: 
