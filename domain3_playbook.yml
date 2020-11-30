@@ -12,6 +12,7 @@
   - name: APT - Add bionic universe repository
     apt_repository: repo="deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" update_cache=yes
     apt_repository: repo="deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" update_cache=yes
+    when: ansible_distribution == "Ubuntu"
       
   - name: Set hostname
     shell:
