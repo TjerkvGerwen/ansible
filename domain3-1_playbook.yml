@@ -6,6 +6,7 @@
   tasks:
   - name: Set hostname
     shell:
+      cmd: apt update
       cmd: hostnamectl set-hostname myubuntu
       
   - name: stop DNS shizzel
