@@ -37,8 +37,11 @@
     shell: 
       cmd: sudo realm discover doekoe.local
       
-  - name: passwd invoeren
+  - name: join dinges
     shell:
       cmd: realm join -U Administrator doekoe.local
-      cmd: Doekoe2020!
+  - name: passwd
+    shell:
+      expect "password:"
+      send "{{ Doekoe2020! }}\n"
       
