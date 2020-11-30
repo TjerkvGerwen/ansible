@@ -14,4 +14,4 @@
       
   - name: Add repository 2
     shell:
-      cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic universe'
+      cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe'
