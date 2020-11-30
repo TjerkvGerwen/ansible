@@ -8,13 +8,10 @@
       cmd: apt -y update
       cmd: apt upgrade
       
-  - name: Add repository 1
-    shell:
-      cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic universe'
-      
-  - name: Add repository 2
-    shell:
-      cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe'
+
+  - name: APT - Add bionic universe repository
+    apt_repository: repo="deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" update_cache=yes
+    apt_repository: repo="deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" update_cache=yes
       
   - name: Set hostname
     shell:
