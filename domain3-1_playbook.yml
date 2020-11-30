@@ -40,7 +40,5 @@
   - name: passwd invoeren
     shell:
       cmd: realm join -U Administrator doekoe.local
-      expect "password:"
-      send "{{ Doekoe2020! }}\n"
-      exit 0
+      cmd: Doekoe2020!
       
