@@ -1,0 +1,92 @@
+# Save this part as as domain_playbook.yaml 
+# This playbook allows you to add servers to Active Directory
+# Compatible with Ubuntu 16.04 & 18.04 Server/Desktop
+
+# Make sure you update your AD username and password at the bottom of this playbook.
+# !Also make sure you set your domain name and other info in domain-connect.sh below!
+
+# Run with:
+# sudo ansible-playbook domain_playbook.yaml --user REMOTEUSERNAME --ask-pass --ask-become-pass
+
+- hosts: ubuntu-servers
+#  become: yes
+#  become_user: root
+#  become_method: sudo
+
+  tasks:
+      
+      # Adjust your timezone
+    - name: Set timezone to US/Central
+      become: true
+      timezone:
+        name: US/Central
+
+    - name: Add multiverse repository                                                                                                         
+      become: true
+      shell: apt-add-repository multiverse -y
+      args:
+        executable: /bin/bash
+
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Install Winbind and tools
+      become: true
+      apt: name={{ item }} state=present
+      with_items:
+        - samba
+        - krb5-user
+        - chrony
+        - python-pip
+        - python3-pip
+        - winbind
+        - libnss-winbind
+        - libpam-winbind
+
+    - pip:
+        name: pexpect
+      become: yes
+
+    - name: Copy File
+      copy: 
+        src=domain-connect.sh 
+        dest=~/domain-connect.sh 
+        mode=0751
+      
+    - name: Execute script
+      become: true
+      script: domain-connect.sh
+
+    - name: Case insensitive password string match
+      become: true
+      expect:
+        # Use your Active Directory user and domain here
+        command: net ads join -U USER@domain.local
+        responses:
+          # Use your Active Directory user password here
+          (?i)password: "PASSWORD_HERE"
+      # Don't show passwords in your log
+      no_log: false
+
+    - service:
+        name: "{{ item }}"
+        state: started
+      with_items:
+        - 'chrony'
+        - 'smbd'
+        - 'nmbd'
+
+    - name: Start Winbind
+      become: yes
+      command: systemctl start winbind.service
+      # A restart is required  
+    - name: Restart services
+      become: yes
+      command: systemctl restart winbind.service
+
+###########################################################
+###########################################################
+############### END OF PLAYBOOK ###########################
