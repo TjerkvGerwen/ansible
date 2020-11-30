@@ -1,3 +1,4 @@
+---
 - hosts: test-ansible
 #  become: yes
 #  become_user: root
