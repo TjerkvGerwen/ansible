@@ -17,7 +17,16 @@
   - name: Update en install shit
     shell:
       cmd: apt update
-      cmd: apt -y install realmd libnss-sss libpam-sss sssd sssd-tools adcli samba-common-bin oddjob oddjob-mkhomedir packagekit
+      cmd: apt -y install realmd 
+      cmd: apt -y install libnss-sss 
+      cmd: apt -y install libpam-sss 
+      cmd: apt -y install sssd 
+      cmd: apt -y install sssd-tools 
+      cmd: apt -y install adcli 
+      cmd: apt -y install samba-common-bin 
+      cmd: apt -y install oddjob 
+      cmd: apt -y install oddjob-mkhomedir 
+      cmd: apt -y install packagekit
       
   - name: ask to join domain
     shell:
