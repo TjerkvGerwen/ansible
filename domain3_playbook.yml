@@ -1,0 +1,9 @@
+---
+- hosts: test-ansible
+  become: yes
+  
+  tasks: 
+   
+    - name: Updates Linux machine
+      shell:
+        cmd: apt update
