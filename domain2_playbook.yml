@@ -18,7 +18,7 @@
         upgrade: yes
         update_cache: yes
  
- - name: Install Winbind and tools
+    - name: Install Winbind and tools
       become: true
       apt: name={{ item }} state=present
       with_items:
