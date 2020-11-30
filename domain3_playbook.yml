@@ -3,7 +3,6 @@
   become: yes
   
   tasks: 
-   
-    - name: Updates Linux machine
-      shell:
-        cmd: apt update
+  - name: Updates Linux machine
+    shell:
+      cmd: apt update
