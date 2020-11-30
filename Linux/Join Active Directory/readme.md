@@ -1,5 +1,7 @@
 # Uitleg
 **In part 1 worden 2 repositorys toegevoegd. Dit geeft problemen zolang de machine niet gerestart is. Daarom is er een part 2. Zodra de machine is geherstart kun je part 2 runnen en zal de machine toegevoegd worden aan de Active Directory.**
+## Requirements
+Je moet een DHCP hebben draaien die automatisch de dns goed instelt anders moet je deze handmatig zelf toevoegen.
 
 ## Aanpassen
 **Part 1**
