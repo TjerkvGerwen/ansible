@@ -27,6 +27,15 @@
       cmd: apt -y install oddjob 
       cmd: apt -y install oddjob-mkhomedir 
       cmd: apt -y install packagekit
+ 
+  - name: Enable dns shizzel
+    shell: 
+      cmd: systemctl enable systemd-resolved
+      cmd: systemctl start systemd-resolved
+  
+  - name: discover babe
+    shell: 
+      cmd: sudo realm discover doekoe.local
       
   - name: ask to join domain
     shell:
