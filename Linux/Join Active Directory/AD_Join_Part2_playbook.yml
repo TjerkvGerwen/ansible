@@ -7,7 +7,7 @@
   - name: Set hostname
     shell: |
       apt update
-      hostnamectl set-hostname myubuntu
+      hostnamectl set-hostname yourhostname
       
   - name: stop DNS shizzel
     shell: |
