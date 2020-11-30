@@ -15,3 +15,29 @@
   - name: Add repository 2
     shell:
       cmd: apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe'
+      
+  - name: Set hostname
+    shell:
+      cmd: hostnamectl set-hostname myubuntu
+      
+  - name: stop DNS shizzel
+    shell:
+      cmd: systemctl disable systemd-resolved
+      cmd: systemctl stop systemd-resolved
+  
+  - name: Update en install shit
+    shell:
+      cmd: apt update
+      cmd: apt -y install realmd libnss-sss libpam-sss sssd sssd-tools adcli samba-common-bin oddjob oddjob-mkhomedir packagekit
+      
+  - name: ask to join domain
+    shell:
+      cmd: realm join -U Administrator doekoe.local
+      
+  - name: passwd invoeren
+    shell: |
+      expect "password:"
+      send "{{ Doekoe2020! }}\n"
+      exit 0
+      
+    
