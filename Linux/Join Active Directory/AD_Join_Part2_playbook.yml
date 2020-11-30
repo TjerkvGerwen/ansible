@@ -5,33 +5,33 @@
 
   tasks:
   - name: Set hostname
-    shell:
-      cmd: apt update
-      cmd: hostnamectl set-hostname myubuntu
+    shell: |
+      apt update
+      hostnamectl set-hostname myubuntu
       
   - name: stop DNS shizzel
-    shell:
-      cmd: systemctl disable systemd-resolved
-      cmd: systemctl stop systemd-resolved
+    shell: |
+      systemctl disable systemd-resolved
+      systemctl stop systemd-resolved
   
   - name: Update en install shit
-    shell:
-      cmd: apt update
-      cmd: apt -y install realmd 
-      cmd: apt -y install libnss-sss 
-      cmd: apt -y install libpam-sss 
-      cmd: apt -y install sssd 
-      cmd: apt -y install sssd-tools 
-      cmd: apt -y install adcli 
-      cmd: apt -y install samba-common-bin 
-      cmd: apt -y install oddjob 
-      cmd: apt -y install oddjob-mkhomedir 
-      cmd: apt -y install packagekit
+    shell: |
+      apt update
+      apt -y install realmd 
+      apt -y install libnss-sss 
+      apt -y install libpam-sss 
+      apt -y install sssd 
+      apt -y install sssd-tools 
+      apt -y install adcli 
+      apt -y install samba-common-bin 
+      apt -y install oddjob 
+      apt -y install oddjob-mkhomedir 
+      apt -y install packagekit
  
   - name: Enable dns shizzel
-    shell: 
-      cmd: systemctl enable systemd-resolved
-      cmd: systemctl start systemd-resolved
+    shell: |
+      systemctl enable systemd-resolved
+      systemctl start systemd-resolved
   
   - name: discover babe
     shell: 
