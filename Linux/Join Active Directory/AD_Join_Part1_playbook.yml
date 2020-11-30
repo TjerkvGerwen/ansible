@@ -5,9 +5,9 @@
   
   tasks: 
   - name: Updates && upgrades Linux machine
-    shell:
-      cmd: apt -y update
-      cmd: apt upgrade
+    shell: |
+      apt -y update
+      apt upgrade
       
 
   - name: APT - Add bionic universe repository
