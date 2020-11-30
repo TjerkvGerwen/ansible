@@ -1,6 +1,6 @@
 ---
 - name: Deel 2 installatie
-  hosts: test-ansible
+- hosts: test-ansible
   become: yes
   
 
