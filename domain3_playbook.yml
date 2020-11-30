@@ -3,6 +3,14 @@
   become: yes
   
   tasks: 
-  - name: Updates Linux machine
+  - name: Updates && upgrades Linux machine
     shell:
-      cmd: apt update
+      cmd: apt -y update
+      cmd: apt upgrade
+      
+  - name: Add repository
+    shell:
+      cmd: tee -a /etc/apt/sources.list <<EOF
+deb http://us.archive.ubuntu.com/ubuntu/ bionic universe
+deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe
+EOF
