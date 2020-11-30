@@ -40,6 +40,7 @@
   - name: join dinges
     shell: |
       echo "Doekoe2020!" | realm join -U Administrator doekoe.local
+      realm permit -g 'linux-admin'
 
       
       
