@@ -26,21 +26,13 @@
 ##### USER VARIABLES #####
 
 # Type in your domain name: (example.local)
-DOMAIN='domain.local'
+DOMAIN='doekoe.local'
 
 # Type the fully qualified domain name for the domain controller:
-DC='dc.domain.local'
+DC='win-seraphine.doekoe.local'
 
 # Type the domain controller IP address:
-DCIP='192.168.70.1'
-
-# Do you have a second domain controller?  Leave these blank if you do not.
-
-# Type the fully qualified domain name for the second domain controller:
-DC2=''
-
-# Type the second domain controller IP address:
-DC2IP=''
+DCIP='39.0.0.5'
 
 # If not done already, you will need to update /etc/hosts and possibly /etc/resolv.conf before running the rest of this script.
 # Do you want this script to automatically update /etc/hosts and /etc/resolv.conf?
