@@ -57,7 +57,10 @@
       echo "Doekoe2020!" | realm join -U Administrator doekoe.local
       realm permit -g 'linux-admin'
 
-      
-      
-
+  - name: Reboot required?
+    register: reboot_required_file
+    stat: path=/var/run/reboot-required get_md5=no
     
+  - name: reboot machine
+    reboot:
+      when: reboot_required_file.stat.exists
