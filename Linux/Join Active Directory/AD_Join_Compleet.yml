@@ -1,0 +1,63 @@
+---
+- name: AD_join_Compleet
+  hosts: test-ansible
+  become: yes
+  
+  tasks: 
+  - name: Updates && upgrades Linux machine
+    shell: |
+      apt -y update
+      apt upgrade
+      
+
+  - name: APT - Add bionic universe repository
+    apt_repository: repo="deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" update_cache=yes
+    apt_repository: repo="deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+    
+  - name: Reboot a slow machine that might have lots of updates to apply
+    reboot:
+      reboot_timeout: 3600
+      
+  - name: Set hostname
+    shell: |
+      apt update
+      hostnamectl set-hostname yourhostname
+      
+  - name: stop DNS shizzel
+    shell: |
+      systemctl disable systemd-resolved
+      systemctl stop systemd-resolved
+  
+  - name: Update en install shit
+    shell: |
+      apt update
+      apt -y install realmd 
+      apt -y install libnss-sss 
+      apt -y install libpam-sss 
+      apt -y install sssd 
+      apt -y install sssd-tools 
+      apt -y install adcli 
+      apt -y install samba-common-bin 
+      apt -y install oddjob 
+      apt -y install oddjob-mkhomedir 
+      apt -y install packagekit
+ 
+  - name: Enable dns shizzel
+    shell: |
+      systemctl enable systemd-resolved
+      systemctl start systemd-resolved
+  
+  - name: discover babe
+    shell: 
+      cmd: sudo realm discover doekoe.local
+      
+  - name: join dinges
+    shell: |
+      echo "Doekoe2020!" | realm join -U Administrator doekoe.local
+      realm permit -g 'linux-admin'
+
+      
+      
+
+    

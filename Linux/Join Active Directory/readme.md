@@ -1,13 +1,22 @@
 # Uitleg
+
 **In part 1 worden 2 repositorys toegevoegd. Dit geeft problemen zolang de machine niet gerestart is. Daarom is er een part 2. Zodra de machine is geherstart kun je part 2 runnen en zal de machine toegevoegd worden aan de Active Directory.**
+
 ## Requirements
+
 Je moet een DHCP hebben draaien die automatisch de dns goed instelt anders moet je deze handmatig zelf toevoegen.
 
+## UPDATE
+AD_Join_Compleet dit script wacht totdat pc is gereboot en gaat dan verder met het script. Dit betekend dus dat je niet 2 verschillende scripts hoeft te runnen.
+
 ## Aanpassen
+
 **Part 1**
+
 * geen aanpassingen nodig
 
 **Part 2**
+
 * regel 3, pas hier de hosts op aan
 * regel 10, pas hier je hostname aan
 * regel 38, plaats hier je domain
@@ -15,13 +24,14 @@ Je moet een DHCP hebben draaien die automatisch de dns goed instelt anders moet 
 * regel 43, plaats hier de security group die toegang hebben tot ssh 
 
 ### Installed packages after run
-* realmd 
-* libnss-sss 
-* libpam-sss 
-* sssd 
-* sssd-tools 
-* adcli 
-* samba-common-bin 
-* oddjob 
-* oddjob-mkhomedir 
+
+* realmd
+* libnss-sss
+* libpam-sss
+* sssd
+* sssd-tools
+* adcli
+* samba-common-bin
+* oddjob
+* oddjob-mkhomedir
 * packagekit
