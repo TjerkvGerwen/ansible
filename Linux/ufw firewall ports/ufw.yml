@@ -15,6 +15,7 @@
   - name: Allow SSH 
     community.general.ufw:
       rule: allow
+      name: OpenSSH
 
   - name: Delete OpenSSH rule
     community.general.ufw:
