@@ -8,6 +8,21 @@
       include_sub_features: yes
       include_management_tools: yes
     register: ansible.windows.win_feature
+    
+  - name: port 80 firewall openzetten
+    win_firewall_rule:
+      name: HTTP inkomend toestaan
+      # Geef hier de firewall regel een naam
+      localport: 80
+      # kies hier de gewenste poort
+      action: allow
+      # allow or block
+      direction: in
+      # Direction in or out
+      protocol: tcp
+      # protocol TCP or UDP
+      state: present
+      enabled: yes
 
   - name: Reboot als dat nodig is 
     ansible.windows.reboot:
