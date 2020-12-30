@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  gather_facts: no
   tasks:
   - name: Install critical, security en rollups updates
     win_updates:
