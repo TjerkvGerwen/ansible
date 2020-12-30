@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: Install critical, security en rollups updates
+    win_updates:
+      category_names:
+      - CriticalUpdates
+      - SecurityUpdates
+      - UpdateRollups
+      log_path: C:\Temp\ansible-windows-update.txt
+      state: installed
+      reboot: yes

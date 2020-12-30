@@ -1,0 +1,21 @@
+---
+- name: Update
+  hosts: 
+  
+  tasks: 
+    - name: update
+      apt:
+        update-cache: yes
+      changed_when: 0
+
+    - name: upgrade
+      apt: upgrade=dist
+      register: apt_result
+
+    - name: Reboot required?
+      register: reboot_required_file
+      stat: path=/var/run/reboot-required get_md5=no
+    
+    - name: reboot machine
+      reboot:
+        when: reboot_required_file.stat.exists
