@@ -1,0 +1,17 @@
+- name: Basic config VyOS
+  connection: network_cli
+  hosts: all
+  tasks:
+
+    - name: Get config for VyOS devices
+      vyos.vyos.vyos_facts:
+        gather_subset: all
+      when: ansible_network_os == 'vyos'
+
+    - name: Display the config
+      debug:
+        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+
+    - name: Ping 8.8.8.8
+      vyos.vyos.vyos_ping:
+        dest: 8.8.8.8
