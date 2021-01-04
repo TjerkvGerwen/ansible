@@ -9,16 +9,11 @@
       lines:
       - set system host-name VyOS-testrouter
 
-  - name: Configuring the Pre-login banner and the post-login banner
+  - name: login banner want dat is leuk
     vyos.vyos.vyos_banner:
       banner: pre-login
       text: |
-        Dit
-        is
-        een
-        multi
-        lines
-        banner
+        Dit is een moooie banner
       state: present
   
   - name: Gebruiker aanmaken
@@ -28,7 +23,7 @@
       update_password: always
       state: present
 
-  - name: configuring Vyos interfaces through Ansible
+  - name: stel interface in
     vyos.vyos.vyos_interfaces:
       config:
       - name: eth1
@@ -37,17 +32,12 @@
         duplex: auto
         enabled: yes
 
-  - name: Configuring Vyos Layer 3 settings through Ansbible
+  - name: set IP
     vyos.vyos.vyos_l3_interfaces:
       config:
         - name: eth1
           ipv4:
             - address: 10.10.10.1/30
-
-  - name: Changing Device Hostname
-    vyos.vyos.vyos_config:
-      lines:
-      - set system host-name Vyos-TestEnviorment
 
   - name: Remove aangemaakte User
     vyos.vyos.vyos_user:
