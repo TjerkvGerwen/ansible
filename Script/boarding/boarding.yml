@@ -51,10 +51,12 @@
     
     - name: Delete Disabled users
       win_shell: |
-        $6Months = (get-date).AddMonths(-6)
-        $users = Get-ADUser -properties * -filter {((modifyTimeStamp -le $6Months) -AND (enabled -eq $False))}  | where CanonicalName -Like "NamedAccounts" | select-object SAMaccountname
+#       $6Months = (get-date).AddMonths(-6)
+        $users = Get-ADUser -properties * -filter {( (enabled -eq $False))}  | where CanonicalName -Like "NamedAccounts" | select-object SAMaccountname
         foreach ($user in $users)
         {
           write-host Deleting account $user.SAMaccountname
           Remove-ADUser -Identity $user.SAMaccountname
         } 
+
+# (modifyTimeStamp -le $6Months) -AND
