@@ -40,15 +40,19 @@
         Invoke-Sqlcmd -Query "INSERT INTO Board.dbo.Wachtwoord (ID,wachtwoord) VALUES ($($employee.ID), '$($password)');" -ServerInstance "WIN-SKARNER" -Username "SQL" -Password "Doekoe2020!!"  -OutputSqlErrors $True
         Add-ADGroupMember -Identity $employee.groep -Members $employee.username
         }
+    
+    - name: Delete Disabled users
+      win_shell: |
+        Get-ADUser -Filter * -SearchBase "OU=Gebruikers,DC=Doekoe,DC=local"  | Where-Object {$_.Enabled -eq $false} | Remove-Aduser -confirm:$False 
+    
     - name: Disable Users 
       win_shell: |
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Board].[dbo].[Mensen] WHERE State = 0" -ServerInstance "WIN-SKARNER" -Username "SQL" -Password "Doekoe2020!!"        
         foreach($employee in $data)
         {
         Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"
-        Disable-ADAccount -Identity $employee.username  
+        Disable-ADAccount -Identity $employee.username
+        Invoke-Sqlcmd -Query "UPDATE Board.dbo.Mensen SET creation = 1 WHERE ID = $($employee.ID) " -ServerInstance "WIN-SKARNER" -Username "SQL" -Password "Doekoe2020!!"  -OutputSqlErrors $True  
         }
     
-    - name: Delete Disabled users
-      win_shell: |
-        Get-ADUser -Filter * -SearchBase "OU=Gebruikers,DC=Doekoe,DC=local"  | Where-Object {$_.Enabled -eq $false} | Remove-Aduser -confirm:$False 
+    
