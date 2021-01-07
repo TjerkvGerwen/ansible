@@ -52,7 +52,7 @@
         {
         Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"
         Disable-ADAccount -Identity $employee.username
-        Invoke-Sqlcmd -Query "UPDATE Board.dbo.Mensen SET creation = 1 WHERE ID = $($employee.ID) " -ServerInstance "WIN-SKARNER" -Username "SQL" -Password "Doekoe2020!!"  -OutputSqlErrors $True  
+        Invoke-Sqlcmd -Query "UPDATE Board.dbo.Mensen SET state = 1 WHERE ID = $($employee.ID) " -ServerInstance "WIN-SKARNER" -Username "SQL" -Password "Doekoe2020!!"  -OutputSqlErrors $True  
         }
     
     
