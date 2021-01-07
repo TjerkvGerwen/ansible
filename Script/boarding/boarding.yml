@@ -51,9 +51,4 @@
     
     - name: Delete Disabled users
       win_shell: |
-        $users = Get-ADUser -properties * -filter {((enabled -eq $False))}  | where CanonicalName -Like "NamedAccounts" | select-object SAMaccountname
-        foreach ($user in $users)
-        {
-          write-host Deleting account $user.SAMaccountname
-          Remove-ADUser -Identity $user.SAMaccountname
-        } 
+        Get-ADUser -Filter * -SearchBase "OU=Gebruikers,DC=Doekoe,DC=local"  | Where-Object {$_.Enabled -eq $false} | Remove-Aduser -confirm:$False 
