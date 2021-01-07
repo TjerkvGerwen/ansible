@@ -48,8 +48,13 @@
         Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"
         Disable-ADAccount -Identity $employee.username  
         }
-    #- name: Delete Disabled users
-    #  win_shell: |
-    #    $users = Get-ADUser -Filter * | where {($_.enabled -eq $false)}
-    #    Write-Output "We are deleting $users now after 90 days"
-    #    Write-Output "pIEP POOP BAB IK BEN ROBOT" 
+    
+    - name: Delete Disabled users
+      win_shell: |
+        $6Months = (get-date).AddMonths(-6)
+        $users = Get-ADUser -properties * -filter {((modifyTimeStamp -le $6Months) -AND (enabled -eq $False))}  | where CanonicalName -Like "NamedAccounts" | select-object SAMaccountname
+        foreach ($user in $users)
+        {
+          write-host Deleting account $user.SAMaccountname
+          Remove-ADUser -Identity $user.SAMaccountname
+        } 
